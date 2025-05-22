@@ -128,4 +128,26 @@ class BookController extends Controller
     {
         return Book::where('bookshelf_id', $bookshelfId)->find($id);
     }
+
+    /**
+     * Search for books by title or author.
+     */
+    public function searchBook(Request $request): JsonResponse
+    {
+        $query = $request->query('query');
+
+        if (!$query) {
+            return response()->json(['message' => 'Search query is required'], 400);
+        }
+
+        $books = Book::where('title', 'LIKE', "%{$query}%")
+            ->orWhere('author', 'LIKE', "%{$query}%")
+            ->get();
+
+        if ($books->isEmpty()) {
+            return response()->json(['message' => 'No books found matching the search criteria'], 404);
+        }
+
+        return response()->json(['books' => $books]);
+    }
 }

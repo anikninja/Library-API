@@ -123,4 +123,9 @@ Route::middleware(['auth:sanctum'])
         Route::delete('/chapter/page/delete/{id1}/{id2}', [PageController::class, 'destroy'])
             ->name('page.destroy');
 
+
+        // Search books by title and author
+        Route::get('/book/search', [BookController::class, 'searchBook'])
+            ->name('books.search');
+
     });
