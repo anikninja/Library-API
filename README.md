@@ -1,61 +1,116 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Library API
+A demo API application using Laravel that facilitates the Library management of Books. The system allow user to add multiple Bookshelves and Books with chapter and page content.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### Application Features:
+- Laravel 12 + Breeze + Sanctum API
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Installation
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+New Laravel application? make sure that your local machine has `PHP`, `Composer`, `Node`, `NPM` and the `Laravel installer` installed.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Read Doc: [Installing PHP and the Laravel Installer](https://laravel.com/docs/12.x/installation#installing-php)
 
-## Learning Laravel
+### Installing PHP and the Laravel Installer
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+macOS installer:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```sh
+/bin/bash -c "$(curl -fsSL https://php.new/install/mac/8.4)"
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Windows installer by Windows PowerShell:
 
-## Laravel Sponsors
+```sh
+# Run as administrator...
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://php.new/install/windows/8.4'))
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Linux installer:
 
-### Premium Partners
+```sh
+/bin/bash -c "$(curl -fsSL https://php.new/install/linux/8.4)"
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
 
-## Contributing
+Already have PHP and Composer installed? then install the Laravel installer via Composer::
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```sh
+composer global require laravel/installer
+```
 
-## Code of Conduct
+### Installation Using Herd
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+I recommend to [Install Laravel Herd](https://herd.laravel.com/) for local development environment.
 
-## Security Vulnerabilities
+*Laravel Herd is considered the best for many due to its ability to simplify local development or test, providing a fast and convenient environment for building Laravel applications.*
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+## Clone Repository
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Clone the repo locally:
+
+```sh
+git clone https://github.com/anikninja/Library-API.git
+cd Library-API
+```
+
+Install PHP dependencies:
+
+```sh
+composer install
+```
+
+Setup configuration:
+
+```sh
+cp .env.example .env
+```
+
+Generate application key:
+
+```sh
+php artisan key:generate
+```
+
+Create an SQLite database. You can also use another database (MySQL, Postgres), simply update your configuration accordingly.
+
+```sh
+touch database/database.sqlite
+```
+
+Run database migrations:
+
+```sh
+php artisan migrate
+```
+
+Run database seeder:
+
+```sh
+php artisan db:seed
+```
+
+Run server:
+
+```sh
+php artisan serve
+```
+
+Test It is running or not? Click on following url [http://127.0.0.1:8000] in your Terminal.
+
+
+## Running on Postman
+
+To run the api follow the Postman Collection:
+
+```
+https://www.postman.com/arch-interactive/workspace/optimal-byte-ltd/collection/42130544-e6e2bf39-74e8-48d0-b23a-4e4d574a86bd?action=share&creator=42130544&active-environment=42130544-6f2ee8b8-416e-431c-bc61-c97a34019339
+```
+
+
+## Credits
+
+🚀 Original work by Anik [@anikninja](https://www.github.com/anikninja)
+
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/anik89bd/)
