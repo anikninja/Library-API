@@ -9,4 +9,16 @@ class Bookshelves extends Model
 {
     /** @use HasFactory<\Database\Factories\BookshelvesFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'location',
+    ];
+
+    public function books()
+    {
+        return $this->hasMany(Book::class);
+    }
+
+    
 }

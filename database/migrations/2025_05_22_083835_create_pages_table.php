@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('chapter_id')->nullable()->index()->constrained();
+            $table->bigInteger('page_number');
+            $table->longText('content');
             $table->timestamps();
         });
     }

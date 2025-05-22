@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('chapters', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('book_id')->index()->constrained();
+            $table->string('title');
+            $table->integer('chapter_number');
             $table->timestamps();
         });
     }

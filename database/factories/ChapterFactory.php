@@ -17,7 +17,8 @@ class ChapterFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => $this->faker->sentence(3),
+            'chapter_number' => $this->faker->numberBetween(1, 20),
         ];
     }
 }

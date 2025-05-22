@@ -17,7 +17,8 @@ class BookshelvesFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => 'Bookshelf ' . $this->faker->unique()->word(),
+            'location' => $this->faker->address(),
         ];
     }
 }

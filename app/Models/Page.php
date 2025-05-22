@@ -9,4 +9,14 @@ class Page extends Model
 {
     /** @use HasFactory<\Database\Factories\PageFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'page_number',
+        'content',
+        'chapter_id',
+    ];
+    public function chapter()
+    {
+        return $this->belongsTo(Chapter::class);
+    }
 }
