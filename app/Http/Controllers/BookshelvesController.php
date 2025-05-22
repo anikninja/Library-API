@@ -5,62 +5,89 @@ namespace App\Http\Controllers;
 use App\Models\Bookshelves;
 use App\Http\Requests\StoreBookshelvesRequest;
 use App\Http\Requests\UpdateBookshelvesRequest;
+use App\Http\Resources\Api\BookshelvesResource;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\JsonResponse;
 
 class BookshelvesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    // Store a new bookshelf
+    public function store(Request $request): JsonResponse
     {
-        //
-    }
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+        ]);
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+        $bookshelf = Bookshelves::create([
+            'name' => $request->name,
+            'location' => $request->location,
+        ]);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreBookshelvesRequest $request)
-    {
-        //
-    }
+        if (!$bookshelf) {
+            return response()->json(['message' => 'Failed to create bookshelf'], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Bookshelves $bookshelves)
-    {
-        //
+        return response()->json([
+            'message' => 'Bookshelf created successfully',
+            'bookshelf' => new BookshelvesResource($bookshelf),
+        ], Response::HTTP_CREATED);
     }
-
+  
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Bookshelves $bookshelves)
+    public function edit($id, Request $request): JsonResponse
     {
-        //
-    }
+        $bookshelf = Bookshelves::findOrFail($id);
+        if (!$bookshelf) {
+            return response()->json([
+                'message' => 'Bookshelf not found'
+            ], Response::HTTP_NOT_FOUND);
+        }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateBookshelvesRequest $request, Bookshelves $bookshelves)
-    {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+        ]);
+
+        $bookshelf->update([
+            'name' => $request->name,
+            'location' => $request->location,
+        ]);
+
+        if (!$bookshelf) {
+            return response()->json(['message' => 'Failed to update bookshelf'], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+        return response()->json([
+            'message' => 'Bookshelf updated successfully',
+            'bookshelf' => new BookshelvesResource($bookshelf),
+        ], Response::HTTP_OK);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Bookshelves $bookshelves)
+    public function destroy($id, Request $request): JsonResponse
     {
-        //
+        $bookshelves = Bookshelves::findOrFail($id);
+        if (!$bookshelves) {
+            return response()->json([
+                'message' => 'Bookshelf not found'
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        // Implement the logic to delete a bookshelf
+        $bookshelves->delete();
+
+        return response()->json([
+            'message' => 'Bookshelf deleted successfully',
+        ], Response::HTTP_OK);
     }
 }
