@@ -8,8 +8,9 @@ use App\Models\Bookshelves;
 use App\Http\Resources\Api\BookshelvesResource;
 use App\Http\Controllers\BookshelvesController;
 use App\Http\Controllers\BookController;
-use App\Http\Resources\Api\BookResource;
 use App\Http\Controllers\ChapterController;
+use App\Http\Controllers\PageController;
+
 
 Route::middleware('guest')
     ->group(function () {
@@ -99,5 +100,27 @@ Route::middleware(['auth:sanctum'])
         // Delete a chapter
         Route::delete('/book/chapter/delete/{id1}/{id2}', [ChapterController::class, 'destroy'])
             ->name('chapter.destroy');
+
+
+        // Page routes
+        // Get all pages in a chapter
+        Route::get('/chapter/pages/{id}', [PageController::class, 'index'])
+            ->name('page.index');
+
+        // Get a specific page
+        Route::get('/chapter/page/{id1}/{id2}', [PageController::class, 'show'])
+            ->name('page.show');
+
+        // Create a new page
+        Route::post('/chapter/page/create/{id}', [PageController::class, 'store'])
+            ->name('page.store');
+
+        // Update an existing page
+        Route::put('/chapter/page/edit/{id1}/{id2}', [PageController::class, 'update'])
+            ->name('page.edit');
+
+        // Delete a page
+        Route::delete('/chapter/page/delete/{id1}/{id2}', [PageController::class, 'destroy'])
+            ->name('page.destroy');
 
     });
