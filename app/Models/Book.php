@@ -14,7 +14,6 @@ class Book extends Model
         'title',
         'author',
         'published_year',
-        'bookshelf_id',
     ];
     
     public function bookshelf()
